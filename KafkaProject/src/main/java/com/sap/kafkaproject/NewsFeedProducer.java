@@ -52,5 +52,16 @@ public class NewsFeedProducer {
            System.out.println("Successfully produced batch = " + batchCount++);
        }
    }
-
+   
+   public static void main(String[] args){
+       NewsFeedProducer newsFeedProducer = new NewsFeedProducer();
+        try {
+            while(true){
+                newsFeedProducer.publish();
+            }
+        } catch (FacebookException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(KafkaProducer.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+   }
 }
