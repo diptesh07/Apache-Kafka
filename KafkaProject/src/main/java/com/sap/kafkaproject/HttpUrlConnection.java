@@ -17,11 +17,34 @@ import org.json.*;
 public class HttpUrlConnection {
     private static final String POST_URL = " http://text-processing.com/api/sentiment/";
     private static String POST_PARAM;
-    
+    private static final String GET_URL = "https://graph.facebook.com/endpoint?key=value&amp;access_token=" + "310700449350456" + "|" + "7efde528b03482c36a7a2e741f364222";
     HttpUrlConnection(String feed){
         POST_PARAM = "text=" + feed;
     }
-    
+    private static void sendGET() throws IOException {
+		URL obj = new URL(GET_URL);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("GET");
+		int responseCode = con.getResponseCode();
+		System.out.println("GET Response Code :: " + responseCode);
+		if (responseCode == HttpURLConnection.HTTP_OK) { // success
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+
+			// print result
+			System.out.println(response.toString());
+		} else {
+			System.out.println("GET request not worked");
+		}
+
+	}
     private static void sendPOST() throws IOException {
 		URL obj = new URL(POST_URL);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -62,7 +85,7 @@ public class HttpUrlConnection {
 	}
     
     public static void main(String[] args){
-        HttpUrlConnection conn = new HttpUrlConnection("i hate biryani");
+        HttpUrlConnection conn = new HttpUrlConnection("Tag Madrid fans and burm them ???");
         try {
             conn.sendPOST();
         } catch (IOException ex) {
