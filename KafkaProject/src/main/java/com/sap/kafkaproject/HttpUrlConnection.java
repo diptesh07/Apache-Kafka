@@ -15,13 +15,10 @@ import org.json.*;
  * @author Manna
  */
 public class HttpUrlConnection {
-    private static final String POST_URL = " http://text-processing.com/api/sentiment/";
+    private static String POST_URL;
     private static String POST_PARAM;
     private static final String GET_URL = "https://graph.facebook.com/endpoint?key=value&amp;access_token=" + "310700449350456" + "|" + "7efde528b03482c36a7a2e741f364222";
-    HttpUrlConnection(String feed){
-        POST_PARAM = "text=" + feed;
-    }
-    private static void sendGET() throws IOException {
+    public void sendGET() throws IOException {
 		URL obj = new URL(GET_URL);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("GET");
@@ -45,7 +42,9 @@ public class HttpUrlConnection {
 		}
 
 	}
-    private static void sendPOST() throws IOException {
+    public void sendPOST(String post_param, String sentimentAnalysisApi) throws IOException {
+                POST_URL = sentimentAnalysisApi;
+                String POST_PARAM = "text=" + post_param;
 		URL obj = new URL(POST_URL);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("POST");
@@ -84,13 +83,6 @@ public class HttpUrlConnection {
 		}
 	}
     
-    public static void main(String[] args){
-        HttpUrlConnection conn = new HttpUrlConnection("Tag Madrid fans and burm them ???");
-        try {
-            conn.sendPOST();
-        } catch (IOException ex) {
-            Logger.getLogger(HttpUrlConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 
 }
