@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.*;
-
+ 
 /**
  *
  * @author Manna
@@ -23,10 +23,10 @@ public class FacebookInstance {
         facebook = new FacebookFactory().getInstance();
         appId = "310700449350456";
         appSecret = "7efde528b03482c36a7a2e741f364222";
-        accessToken = "EAACEdEose0cBAGC5cDtY8FJRY3dDdkGU8BlR3gm9mEZCXJpOQ1gMZAFlrjxBTNB4RNLdLmrNMNAFF1gyGRsuIrF1v1bV5MZAdqPOb98E7pQ7m8upqDEKtUjtA2lT115pOp43izNd6hkHSQKbxje2xrVxkF8GHlmAPl0lXtY4KgkUZCxNILoOnY415dTfKHYZD";
+        accessToken = "EAACEdEose0cBAIsRFwkReOjelTlSuEh7PgMHGHYADHwmGmV3608MUGE7RJyQrGBxjOTNYZAZBnPsXxV9mS7eHGV9UyjYG41KKRr8zLiAiBOEYr0hhj7Vrw0jhOexZAfY5DwG4TuDLl4KVsbZA6cDtPSfldHLIMBE3XxUG8SSdJKvZAMQKKJrIRZCfJTm8uqqsZD";
         facebook.setOAuthAppId(appId, appSecret);
-        facebook.setOAuthAccessToken(new AccessToken(accessToken));
         facebook.setOAuthPermissions("read_stream");
+        facebook.setOAuthAccessToken(new AccessToken(accessToken));
     }
     
     public ResponseList<Post> getLiveNewsFeed () throws FacebookException{
